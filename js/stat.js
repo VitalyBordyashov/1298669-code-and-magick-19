@@ -12,7 +12,7 @@ window.renderStatistics = function (ctx, names, time) {
   ctx.font = '16px PT Mono';
   ctx.fillText('Ура, Вы победили!', 210, 30);
   ctx.fillText('Текущие результаты:', 200, 45);
-  // переменная x будет использоваться в циклах отрисовки результатов, в нашем случае это начальная координата X:
+  // начальная координата X:
   var x = 150;
   // создаем цикл отрисовки результатов:
   for (var i = names.length - 1; i >= 0; i--) {
@@ -21,16 +21,15 @@ window.renderStatistics = function (ctx, names, time) {
     // Заявляем переменную равную высоте гистограммы игроков:
     var heightPlayerHistogram = time[i] * 0.015;
     // рисуем прямоугольник по высоте пропорционален времени игры игроков:
-      if (names[i] == 'Вы') {
+    if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-      } else {
-          ctx.fillStyle = 'rgba(0, 0, 255,' + Math.random() + ')';
-      }
+    } else {
+      ctx.fillStyle = 'rgba(0, 0, 255,' + Math.random() + ')';
+    }
     ctx.fillRect(x, (230 - heightPlayerHistogram), 40, heightPlayerHistogram);
-    // сверху гистограммы пишем результат времени игроков:
+    // пишем результат времени игроков:
     ctx.fillStyle = '#000000';
     ctx.fillText(Math.round(time[i]), x, (200 - heightPlayerHistogram));
-    // прибавляем 90 к X, чтобы расстояние между результатами было 50 px (ширина гистограммы 40, 40+50=90)
     x = x + 90;
   }
- }
+};
