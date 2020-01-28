@@ -23,7 +23,7 @@ creatingItem('.setup').classList.remove('hidden');
 // делаем видимым блок, в котором расположены похожие персонажи:
 creatingItem('.setup-similar').classList.remove('hidden');
 
-//Создаем переменную в которую будем добавлять созданные значения клонов персонажей:
+// Создаем переменную в которую будем добавлять созданные значения клонов персонажей:
 var similarListElement = creatingItem('.setup-similar-list');
 // Создаем переменную эелемента DOM значения которого будем клонировать:
 var similarWizardTemplate = creatingItem('#similar-wizard-template')
@@ -32,11 +32,11 @@ var similarWizardTemplate = creatingItem('#similar-wizard-template')
 // Объявляем функцию генерации персонажа:
 var characterGeneration = function () {
   // создаем переменную (клон) персонажа
-  var wizardElement = similarWizardTemplate.cloneNode(true);
+  var wizardElement = similarWizardTemplate.cloneNode(true),
   // создаем переменную, чтобы присвоить ей цвет мантии
-  var wizardCoatElement = wizardElement.querySelector('.wizard-coat');
+  wizardCoatElement = wizardElement.querySelector('.wizard-coat'),
   // создаем переменную, чтобы присвоить ей цвет глаз
-  var wizardEyeesElement = wizardElement.querySelector('.wizard-eyes');
+  wizardEyeesElement = wizardElement.querySelector('.wizard-eyes');
   // присваиваем персонажу случайное имя и фамилию
   wizardElement.querySelector('.setup-similar-label').textContent = randomElement(NAMES) + randomElement(SURNAMES);
   // присваеваем стиль - случайный цвет мантии из приведенного списка.
@@ -48,5 +48,5 @@ var characterGeneration = function () {
 };
 // создаем цикл, чтобы получилось 4 клона и им присвоились имена, цвет мантии и глаз:
 for (var i = 0; i < 4; i++) {
-  characterGeneration();
-};
+  characterGeneration()
+}
