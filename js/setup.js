@@ -8,6 +8,8 @@ var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)'
 
 var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
 
+var fireballColor = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+
 // функция создания эелемента DOM
 var creatingItem = function (value) {
   return document.querySelector(value);
@@ -102,12 +104,32 @@ userNameInput.addEventListener('invalid', function (evt) {
   }
 });
 
-// создаем элемент
-var colorMantle = document.querySelector('.setup-wizard.wizard-coat');
+// создаем элемент цвета мантии
+var colorMantle = document.querySelector('.setup-wizard .wizard-coat');
 // функция изменеия цвета
 var wizardCoatClickHandler = function () {
   colorMantle.style.fill = randomElement(coatColor);
+  var inputColorMantle = document.querySelector('.setup-wizard .wizard-eyes input[name="coat-color"]');
+  inputColorMantle.value = colorMantle.style.fill;
 };
-
 colorMantle.addEventListener('click', wizardCoatClickHandler);
 
+// создаем элемент цвета глаз
+var colorEyes = document.querySelector('.setup-wizard .wizard-eyes');
+// функция изменеия цвета
+var wizardEyesClickHandler = function () {
+  colorEyes.style.fill = randomElement(eyesColor);
+  var inputColorEyes = document.querySelector('.setup-wizard .wizard-eyes input[name="eyes-color"]');
+  inputColorEyes.value = colorEyes.style.fill;
+};
+colorEyes.addEventListener('click', wizardEyesClickHandler);
+
+// создаем элемент цвета фаербола
+var colorFireball = document.querySelector('.setup-fireball-wrap');
+// функция изменеия цвета
+var fireballClickHandler = function () {
+  colorFireball.style.background = randomElement(fireballColor);
+  var inputColorFireball = document.querySelector('.setup-fireball-wrap input');
+  inputColorFireball.value = colorFireball.style.background;
+};
+colorFireball.addEventListener('click', fireballClickHandler);
