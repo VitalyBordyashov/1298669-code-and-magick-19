@@ -109,7 +109,7 @@ var colorMantle = document.querySelector('.setup-wizard .wizard-coat');
 // функция изменеия цвета
 var wizardCoatClickHandler = function () {
   colorMantle.style.fill = randomElement(coatColor);
-  var inputColorMantle = document.querySelector('.setup-wizard .wizard-eyes input[name="coat-color"]');
+  var inputColorMantle = document.querySelector('.setup-wizard-wrap input[name="coat-color"]');
   inputColorMantle.value = colorMantle.style.fill;
 };
 colorMantle.addEventListener('click', wizardCoatClickHandler);
@@ -119,7 +119,7 @@ var colorEyes = document.querySelector('.setup-wizard .wizard-eyes');
 // функция изменеия цвета
 var wizardEyesClickHandler = function () {
   colorEyes.style.fill = randomElement(eyesColor);
-  var inputColorEyes = document.querySelector('.setup-wizard .wizard-eyes input[name="eyes-color"]');
+  var inputColorEyes = document.querySelector('.setup-wizard-wrap input[name="eyes-color"]');
   inputColorEyes.value = colorEyes.style.fill;
 };
 colorEyes.addEventListener('click', wizardEyesClickHandler);
