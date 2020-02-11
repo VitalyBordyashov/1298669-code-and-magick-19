@@ -8,6 +8,8 @@ var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)'
 
 var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
 
+var fireballColor = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+
 // функция создания эелемента DOM
 var creatingItem = function (value) {
   return document.querySelector(value);
@@ -20,8 +22,8 @@ var randomElement = function (Array) {
 };
 
 // делаем видимыми блоки:
-creatingItem('.setup').classList.remove('hidden');
-creatingItem('.setup-similar').classList.remove('hidden');
+// creatingItem('.setup').classList.remove('hidden');
+// creatingItem('.setup-similar').classList.remove('hidden');
 
 // Создаем переменную в которую будем добавлять созданные значения клонов персонажей:
 var similarListElement = creatingItem('.setup-similar-list');
@@ -47,3 +49,87 @@ var characterGeneration = function () {
 for (var i = 0; i < 4; i++) {
   characterGeneration();
 }
+// задание 4
+var setup = document.querySelector('.setup');
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = setup.querySelector('.setup-close');
+
+var onPopupEscPress = function (evt) {
+  if (evt.key === 'Escape') {
+    closePopup();
+  }
+};
+
+var openPopup = function () {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closePopup = function () {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+setupOpen.addEventListener('click', function () {
+  openPopup();
+});
+
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Enter') {
+    openPopup();
+  }
+});
+
+setupClose.addEventListener('click', function () {
+  closePopup();
+});
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Enter') {
+    closePopup();
+  }
+});
+// Вводимограничение на ввод имени
+var userNameInput = setup.querySelector('.setup-user-name');
+
+userNameInput.addEventListener('invalid', function (evt) {
+  if (evt.userNameInput.validity.tooShort) {
+    userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
+  } else if (evt.userNameInput.validity.tooLong) {
+    userNameInput.setCustomValidity('Имя не должно превышать 25-ти символов');
+  } else if (evt.userNameInput.validity.valueMissing) {
+    userNameInput.setCustomValidity('Обязательное поле');
+  } else {
+    userNameInput.setCustomValidity('');
+  }
+});
+
+// создаем элемент цвета мантии
+var colorMantle = document.querySelector('.setup-wizard .wizard-coat');
+// функция изменеия цвета
+var wizardCoatClickHandler = function () {
+  colorMantle.style.fill = randomElement(coatColor);
+  var inputColorMantle = document.querySelector('.setup-wizard-wrap input[name="coat-color"]');
+  inputColorMantle.value = colorMantle.style.fill;
+};
+colorMantle.addEventListener('click', wizardCoatClickHandler);
+
+// создаем элемент цвета глаз
+var colorEyes = document.querySelector('.setup-wizard .wizard-eyes');
+// функция изменеия цвета
+var wizardEyesClickHandler = function () {
+  colorEyes.style.fill = randomElement(eyesColor);
+  var inputColorEyes = document.querySelector('.setup-wizard-wrap input[name="eyes-color"]');
+  inputColorEyes.value = colorEyes.style.fill;
+};
+colorEyes.addEventListener('click', wizardEyesClickHandler);
+
+// создаем элемент цвета фаербола
+var colorFireball = document.querySelector('.setup-fireball-wrap');
+// функция изменеия цвета
+var fireballClickHandler = function () {
+  colorFireball.style.background = randomElement(fireballColor);
+  var inputColorFireball = document.querySelector('.setup-fireball-wrap input');
+  inputColorFireball.value = colorFireball.style.background;
+};
+colorFireball.addEventListener('click', fireballClickHandler);
