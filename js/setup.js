@@ -25,30 +25,6 @@ var randomElement = function (Array) {
 // creatingItem('.setup').classList.remove('hidden');
 // creatingItem('.setup-similar').classList.remove('hidden');
 
-// Создаем переменную в которую будем добавлять созданные значения клонов персонажей:
-var similarListElement = creatingItem('.setup-similar-list');
-// Создаем переменную эелемента DOM значения которого будем клонировать:
-var similarWizardTemplate = creatingItem('#similar-wizard-template')
-    .content.querySelector('.setup-similar-item');
-
-// Объявляем функцию генерации персонажа:
-var characterGeneration = function () {
-  var wizardElement = similarWizardTemplate.cloneNode(true);
-  var wizardCoatElement = wizardElement.querySelector('.wizard-coat');
-  var wizardEyeesElement = wizardElement.querySelector('.wizard-eyes');
-
-  wizardElement.querySelector('.setup-similar-label').textContent = randomElement(NAMES) + randomElement(SURNAMES);
-
-  wizardCoatElement.style.fill = randomElement(coatColor);
-
-  wizardEyeesElement.style.fill = randomElement(eyesColor);
-
-  similarListElement.appendChild(wizardElement);
-};
-// цикл создания клонов:
-for (var i = 0; i < 4; i++) {
-  characterGeneration();
-}
 // задание 4
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
@@ -133,3 +109,10 @@ var fireballClickHandler = function () {
   inputColorFireball.value = colorFireball.style.background;
 };
 colorFireball.addEventListener('click', fireballClickHandler);
+
+var FormData = {
+  name: userNameInput,
+  colorMantle: inputColorMantle,
+  colorEyes: inputColorEyes,
+  colorFireball: inputColorFireball
+};
